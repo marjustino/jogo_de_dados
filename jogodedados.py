@@ -1,6 +1,6 @@
 # Projeto de AV2 - Lógica de Programação | Uninassau | CDC 2025.1 Manhã
 # Você é um(a) aventureiro(a) numa caverna escura a procura de um terrível dragão que aterroriza o reino!
-# MENU | Caverna - (PERCEPÇÃO) - Encontrar|NãoEncontrar o Dragão | Encontrar -> Lutar | nãoEcontrar -> Procurar de novo | Morrer ou Matar 
+# MENU | Caverna - (PERCEPÇÃO) - Encontrar|NãoEncontrar o Dragão | Encontrar -> Lutar | nãoEcontrar -> Dragão executa 
 import random
 
 testePerc = random.randint(1, 20)
@@ -42,6 +42,8 @@ if menuoption == 1:
                     print(f"Você rolou: {dados}")
                     if dados >= 10:
                         print(f"Um ataque preciso! Você empala o dragão, que se debate de dor e se debate, inicando um voo rápido para fora da caverna, fugindo e deixando CodeVille em paz! Parabéns, {nome}")
+                    if dados == 20:
+                        print(f"Um ataque LENDÁRIO! Você salta pelas escamas do dragão, desviadno do hálito flamejante. Com o fio da lâmina de sua espada, você arranca a cabeça do dragão e volta para CodeVille como um herói que será lembrado para sempre! Parabéns, {nome}")
             elif testePerc < 10:
                 print("Nada parece anormal, você suspeita que os moradores mentiram para você - Mas é tarde demais, o Dragão aparece atrás de você, é impossível se defender. Você é alvejado por uma grande labareda da boca do dragão e incendiado a cinzas. Fim de Jogo!")
                 exibeMenu()
