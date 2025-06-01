@@ -8,6 +8,7 @@ import time
 import climage
 
 #variável do dragão, função de parâmetro unicode para a imagem ser exibida mais vertical, width limita uma largura para existirem mais pixel na tela e melhorar a qualidade do dragão
+#arte por Justino
 dragao = climage.convert('dragao.jpg', is_unicode=True, width=150)
 
 
@@ -236,13 +237,14 @@ def floresta_sombria():
         floresta_caminho = input("Qual caminho deseja seguir? (1, 2 ou 3): ")
 
         if floresta_caminho == "3": # RESPOSTA CERTA
+            # Aqui você chamara a próxima etapa da aventura após o enigma
+            print(dragao)
             print(""" 
                   Você escolheu a trilha do reflexo perfeito, aventureiro! A luz na clareira se intensifica 
                   ao redor de seus pés e um caminho antes invisível se revela. Você desvendou o enigma!
                   
                   você avança pela floresta sem grandes problemas
-                  """) # Aqui você chamara a próxima etapa da aventura após o enigma
-            print(dragao)
+                  """) 
             combateDragao(100, 120, nome)
             break
             
@@ -255,6 +257,8 @@ def floresta_sombria():
                     """)
             break
         elif floresta_caminho == "1":
+            
+            print(dragao)
             print("""
                   
                   Você entra na trilha errada... raízes vivas agarram suas pernas e espinhos rasgam sua pele.
@@ -262,7 +266,6 @@ def floresta_sombria():
 
                     Você recebeu 15 de dano das raízes.
                     """)
-            print(dragao)
             combateDragao(85, 120, nome)
             break
         else:
@@ -357,21 +360,22 @@ def desafio_silencio(vida_atual):
             continue
 
         if ruido >= 6:
+            print(dragao)
             print("""
                   💀 O monstro se ergue, olhos brilhando de ódio! Com um urro que ecoa pelo Pantano!
                   sem te dar tempo para reagir ele começa avançando e te da um golpe desprevenido
                  """)
             
             vida_atual = vida_atual - 20
+                
             print(f"☠️ Você perdeu 20 de vida! Vida atual: {vida_atual}")
             print("""
                   Golpe que você recebeu foi tão forte mais tão forte que você foi 
                   lançado até a entrada da caverna do dragão! É seu dia de sorte 
                   (talvez nem tanto...)!  """)
-            print(dragao)
             combateDragao(vida_atual, 120, nome)
             return
-            
+
     print("\n✅ Você passou sorrateiramente... sem acordar a criatura.")
     print(dragao)
     combateDragao(vida_atual, 120, nome)
@@ -389,8 +393,14 @@ while True:
         iniciarJogo()
     elif opcao == "2":
         print("\nSaindo do jogo. O Dragão continuará aterrorizando CodeVille...")
-    elif opcao == "2":
-        print("\nAlunos: \n Carlos Henrique, Jonathan Gustavo, Lívia Moreno, Marcelo Justino, Micaías Alexandre, Pedro Canto.")
+    elif opcao == "3":
+        print("""  Alunos:
+              Carlos Henrique
+              Jonathan Gustavo
+              Lívia Moreno
+              Marcelo Justino
+              Micaías Alexandre
+              Pedro Canto \n""")
         break
     else:
         print("Opção inválida! Tente novamente.")
