@@ -1,5 +1,5 @@
 #Projeto de AV2 | Lógica de Programação - Ciência da Computação - UNINASSAU 2025.1 | Docente: Josivan
-#Discentes: Marcelo Justino, Pedro Canto, Jonathan Gustavo, Carlos Henrique, Livia Moreno e Micaías Alexandre.
+#Discentes: Marcelo Justino, Pedro Canto, Jonathan Gustavo, Carlos Henrique, Livia Moreno e Micaías.
 #Um jogo de dados onde você é um(a) aventureiro(a) que irá derrotar um dragão para proteger CodeVille!
 
 #Importando a biblioteca random para os testes de dados, time para ter delay nas mensagens e climage para exibir o dragão
@@ -17,7 +17,7 @@ def exibeMenu():
     print("\n###### MENU - Salve CodeVille! ######")
     print("1 - Iniciar jogo")
     print("2 - Fechar jogo")
-    print("3 - Alunos criadores")
+    print("3 - Alunos Responsáveis")
     return input("Digite sua opção: ")
 
 #Definindo parâmetros das variáveis da vida do jogador e do dragão (serão alterados conforme o resultado do teste de percepção)
@@ -77,7 +77,7 @@ def combateDragao(jogador_hp, dragao_hp, nome):
             print(f"\nRelembre de suas aventuras, {nome}... esta foi sua jornada. Nem sempre os heróis terminam em finais felizes.\n Sua última visão em vida foi um poderoso ataque de chamas do dragão, que penetrou sua armadura, carne e osso... reduzindo seu corpo e suas memórias a cinzas... CodeVille perecerá igualmente.\n Fim de Jogo!")
             return
         
-# Função do desafio do pântano, caso este caminho seja escolhido! É um aleatório
+# Função do desafio do pântano, caso este caminho seja escolhido! Ele tem um loop e uma lista de 1 a 3
 def desafioPantano():
     global vida_atual
     while vida_atual > 0:
@@ -87,11 +87,11 @@ def desafioPantano():
                                      
               """)
 
-        pedras_certas = [random.randint(1, 3) for i_ in range(3)]
-        sucesso = True
+        pedras_certas = [random.randint(1, 3) for i in range(3)] # gera uma lista de 3 números aleatorios entre 1 e 3
+        sucesso = True # vai ver se o jogador passou pelas 3 etapas sem errar
 
-        for etapa in range(3):
-            while True:
+        for etapa in range(3): # aqui começa o loop de 3 etapas correta (0, 2) 3 tentativas ja que o computador conta do 0
+            while True: #Laço de repetição par ao jogo continuar funcionando até o jogador escolher as 3 pedras randomicas certas ou a vida igualar a 0
                 escolha = input(f"\nEtapa {etapa + 1} - Escolha uma pedra (1, 2 ou 3):\n>> ")
                 if escolha in ["1", "2", "3"]:
                     escolha = int(escolha)  # Evitando outras alternativas do usuário
@@ -112,9 +112,8 @@ def desafioPantano():
              
 
         if sucesso:
-            print(dragao)
             print(f"\nVocê cruzou o pântano com sucesso! Sua vida atual é {vida_atual}")
-            combateDragao(vida_atual, 120, nome)
+            return  # Sai da função após sucesso
         elif vida_atual <= 0:
             print("\nVocê pereceu ao Pântano Nebuloso, seu espírito afundará na lama pela eternidade. \nCodeVille continuará assombrada pelo Dragão....")
             time.sleep(2)
@@ -127,7 +126,7 @@ def desafioPantano():
 #Desafio do Silêncio - Testes de avanço para passar a Coruja do Ártico
 def desafio_silencio(vida_atual):
     print("""
-    Após você ter escalado as montanhas geladas dos ventos
+    Após você ter atravessado as águas feditas do pantano e caminhar mais um tempo
     você se depara com uma criatura imensa dormindo à frente, uma Coruja do Ártico Gigante!
     Você consegue ver que o terreno no qual ela descansa é muito irregular e cheio 
     de galhos, pedras e restos de animais, um passo em falso pode custar sua vida...
@@ -136,7 +135,7 @@ def desafio_silencio(vida_atual):
     Você terá essas opções por turno:
     -  Furtividade: anda com cuidado (+1 ruído caso não passe no teste)
     -  Atletismo: mais rápido, mas arriscado (+1 a 3 ruído aleatório caso não passe)   
-    -  Parar: espera em silêncio (pode reduzir o ruído em -1)
+    -  Parar: espera em silêncio (tem chance de diminuir o ruído em -1, ou manter igual...)
 
     Acumule 10 avanços para escapar. Se ruído exceder 6... o monstro irá acordar!
     """)
@@ -144,6 +143,7 @@ def desafio_silencio(vida_atual):
 # variáveis do avanço e ruído, retornarão com os testes do jogador
     avancos = 0
     ruido = 0
+    paradas = 0
 
 #loop dos avanços
     while avancos < 10:
@@ -174,8 +174,25 @@ def desafio_silencio(vida_atual):
                 print(f"🏃 Você tenta correr, mas tropeça! Faz {barulho} de barulho.")
 
         elif escolha == "parar":
+            paradas = paradas + 1
+            if paradas > 3:
+                print("🦉 Você ficou tempo demais parado...")
+                print("""
+                💀 A Coruja do Ártico levanta lentamente a cabeça...
+                Com um grasnado ameaçador, ela percebe sua presença!
+                """)
+                vida_atual = vida_atual - 20
+                print(f"☠️ Você perdeu 20 de vida! Vida atual: {vida_atual}")
+                print("""
+                O ataque te arremessa até a entrada da caverna do dragão...
+                Um destino adiantado, talvez não muito bom...
+                """)
+                combateDragao(vida_atual, 120, nome)
+
+        elif escolha == "parar":
             if ruido > 0:
-                ruido = ruido - 1
+                ruido = ruido - random.randint(0, 1)
+                
                 print("🤫 Você respira fundo e espera... o ambiente silencia.")
             else:
                 print("⏳ Já está silencioso. Esperar mais não ajuda.")
@@ -277,7 +294,7 @@ def floresta_sombria():
 
         "Eis tríade da escolha: grite para o que há em frente,
           Apegue-se na essência da sua voz, somente...
-          Seguir o reflexo é a verdadeira opção,
+          Seguir o reflete é a verdadeira opção,
           Se a sua missão é derrotar o terrível dragão."
 
           Você decide testar os caminhos, um por um, fazendo um som forte
@@ -326,7 +343,7 @@ def floresta_sombria():
                   Você escolheu a trilha do reflexo perfeito, aventureiro! A luz na clareira se intensifica 
                   ao redor de seus pés e um caminho antes invisível se revela. Você desvendou o enigma!
                   
-                  você avança pela floresta sem grandes problemas
+                  você avança pela floresta sem grandes problemas! HIP HIP URRA!!
                   """) 
             combateDragao(100, 120, nome)
             break
@@ -336,6 +353,7 @@ def floresta_sombria():
                   Assim que pisa na trilha, a névoa se fecha atrás de você. 
                   O chão desaparece e você cai num abismo sem fim.
                   Era uma armadilha mortal da floresta...
+                  você viveu como morreu... sem loot e glória...
                     
                     """)
             break
@@ -347,7 +365,8 @@ def floresta_sombria():
                   Você entra na trilha errada... raízes vivas agarram suas pernas e espinhos rasgam sua pele.
                   Você consegue escapar, mas está ferido.
 
-                    Você recebeu 15 de dano das raízes.
+                    Você recebeu 15 de dano das raízes. Parece que √(ocê) foi enraízado!
+                    (tipo, tem uma raíz quadrada ali, entendeu o trocadilho? haha)
                     """)
             combateDragao(85, 120, nome)
             break
@@ -421,7 +440,6 @@ while True:
         iniciarJogo()
     elif opcao == "2":
         print("\nSaindo do jogo. O Dragão continuará aterrorizando CodeVille...")
-        break
     elif opcao == "3":
         print("""  Alunos:
               Carlos Henrique
@@ -430,5 +448,6 @@ while True:
               Marcelo Justino
               Micaías Alexandre
               Pedro Canto \n""")
+        break
     else:
         print("Opção inválida! Tente novamente.")
