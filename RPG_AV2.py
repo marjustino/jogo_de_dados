@@ -444,6 +444,7 @@ while True:
         iniciarJogo()
     elif opcao == "2":
         print("\nSaindo do jogo. O Dragão continuará aterrorizando CodeVille...")
+        break
     elif opcao == "3":
         print("""  Alunos:
               Carlos Henrique
@@ -452,6 +453,5 @@ while True:
               Marcelo Justino
               Micaías Alexandre
               Pedro Canto \n""")
-        break
     else:
         print("Opção inválida! Tente novamente.")
