@@ -187,7 +187,10 @@ def desafio_silencio(vida_atual):
                 O ataque te arremessa até a entrada da caverna do dragão...
                 Um destino adiantado, talvez não muito bom...
                 """)
+                print(dragao)
                 combateDragao(vida_atual, 120, nome)
+                return exibeMenu()
+                
 
         elif escolha == "parar":
             if ruido > 0:
@@ -215,12 +218,12 @@ def desafio_silencio(vida_atual):
                   lançado até a entrada da caverna do dragão! É seu dia de sorte 
                   (talvez nem tanto...)!  """)
             combateDragao(vida_atual, 120, nome)
-            return
+            return exibeMenu()
+
 
     print("\nVocê passou sorrateiramente... sem acordar a criatura.")
     print(dragao)
     combateDragao(vida_atual, 120, nome)
-    return
 
 
 # essa função irá pegar o nome do jogador após ele dizer que quer jogar e chamar a função escolher caminho
