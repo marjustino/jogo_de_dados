@@ -140,7 +140,7 @@ def desafio_silencio(vida_atual):
     Acumule 10 avanços para escapar. Se ruído exceder 6... o monstro irá acordar!
     """)
 
-# variáveis do avanço e ruído, retornarão com os testes do jogador
+# variáveis do avanço, ruído e parada, retornarão com os testes do jogador
     avancos = 0
     ruido = 0
     paradas = 0
@@ -149,17 +149,17 @@ def desafio_silencio(vida_atual):
     while avancos < 10:
         print(f"\nAvanços: {avancos}/10 | Ruído atual: {ruido}")
         escolha = input("Sua ação (Furtividade / Atletismo / Parar): ").strip().lower()
-
+        #escolha de furtividade, o jogador anda lentamente, mas tem menos punição
         if escolha == "furtividade":
             teste_furtividade = rolar_dado()
             print(f"Você rolou: {teste_furtividade + 1}")
             if teste_furtividade >= 10:
                 avancos = avancos + 1
-                print("🦶 Você anda com cuidado... sem problemas.")
+                print("Você anda com cuidado... sem problemas.")
             else:
                 ruido = ruido + 1
-                print("🦶 Você anda com cuidado... mas faz um pouco de barulho.")
-
+                print("Você anda com cuidado... mas faz um pouco de barulho.")
+        #avanço em corrida, o jogador avança mas, porém faz mais barulho
         elif escolha == "atletismo":
             teste_atletismo = rolar_dado()
             print(f"O resultado do seu teste foi: {teste_atletismo - 3}")
@@ -167,22 +167,22 @@ def desafio_silencio(vida_atual):
                 barulho = random.randint(1, 3)
                 ruido = ruido + barulho
                 avancos = avancos + 3
-                print(f"🏃 Você corre! Mas faz {barulho} de barulho.")
+                print(f"Você corre! Mas faz {barulho} de barulho.")
             else:
                 barulho = random.randint(1, 3)
-                ruido += barulho
-                print(f"🏃 Você tenta correr, mas tropeça! Faz {barulho} de barulho.")
-
+                ruido = ruido + barulho
+                print(f" Você tenta correr, mas tropeça! Faz {barulho} de barulho.")
+        #escolha de parar para diminuir o barulho, 
         elif escolha == "parar":
             paradas = paradas + 1
             if paradas > 3:
-                print("🦉 Você ficou tempo demais parado...")
+                print("Você ficou tempo demais parado...")
                 print("""
-                💀 A Coruja do Ártico levanta lentamente a cabeça...
+                 A Coruja do Ártico levanta lentamente a cabeça...
                 Com um grasnado ameaçador, ela percebe sua presença!
                 """)
                 vida_atual = vida_atual - 20
-                print(f"☠️ Você perdeu 20 de vida! Vida atual: {vida_atual}")
+                print(f" Você perdeu 20 de vida! Vida atual: {vida_atual}")
                 print("""
                 O ataque te arremessa até a entrada da caverna do dragão...
                 Um destino adiantado, talvez não muito bom...
@@ -193,23 +193,23 @@ def desafio_silencio(vida_atual):
             if ruido > 0:
                 ruido = ruido - random.randint(0, 1)
                 
-                print("🤫 Você respira fundo e espera... o ambiente silencia.")
+                print("Você respira fundo e espera... o ambiente silencia.")
             else:
-                print("⏳ Já está silencioso. Esperar mais não ajuda.")
+                print("Já está silencioso. Esperar mais não ajuda.")
         else:
-            print("⚠️ Ação inválida. Tente de novo.")
+            print("Ação inválida. Tente de novo.")
             continue
 
         if ruido >= 6:
             print(dragao)
             print("""
-                  💀 O monstro se ergue, olhos brilhando de ódio! Com um urro que ecoa pelo Pantano!
+                  O monstro se ergue, olhos brilhando de ódio! Com um urro que ecoa pelo Pantano!
                   sem te dar tempo para reagir ele começa avançando e te da um golpe desprevenido
                  """)
             
             vida_atual = vida_atual - 20
                 
-            print(f"☠️ Você perdeu 20 de vida! Vida atual: {vida_atual}")
+            print(f"Você perdeu 20 de vida! Vida atual: {vida_atual}")
             print("""
                   Golpe que você recebeu foi tão forte mais tão forte que você foi 
                   lançado até a entrada da caverna do dragão! É seu dia de sorte 
@@ -217,7 +217,7 @@ def desafio_silencio(vida_atual):
             combateDragao(vida_atual, 120, nome)
             return
 
-    print("\n✅ Você passou sorrateiramente... sem acordar a criatura.")
+    print("\nVocê passou sorrateiramente... sem acordar a criatura.")
     print(dragao)
     combateDragao(vida_atual, 120, nome)
     return
