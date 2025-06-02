@@ -1,5 +1,5 @@
 #Projeto de AV2 | Lógica de Programação - Ciência da Computação - UNINASSAU 2025.1 | Docente: Josivan
-#Discentes: Marcelo Justino, Pedro Canto, Jonathan Gustavo, Carlos Henrique, Livia Moreno e Micaías.
+#Discentes: Marcelo Justino, Pedro Canto, Jonathan Gustavo, Carlos Henrique, Livia Moreno e Micaías Alexandre.
 #Um jogo de dados onde você é um(a) aventureiro(a) que irá derrotar um dragão para proteger CodeVille!
 
 #Importando a biblioteca random para os testes de dados, time para ter delay nas mensagens e climage para exibir o dragão
@@ -112,8 +112,9 @@ def desafioPantano():
              
 
         if sucesso:
+            print(dragao)
             print(f"\nVocê cruzou o pântano com sucesso! Sua vida atual é {vida_atual}")
-            return  # Sai da função após sucesso
+            combateDragao(vida_atual, 120, nome)
         elif vida_atual <= 0:
             print("\nVocê pereceu ao Pântano Nebuloso, seu espírito afundará na lama pela eternidade. \nCodeVille continuará assombrada pelo Dragão....")
             time.sleep(2)
@@ -126,7 +127,7 @@ def desafioPantano():
 #Desafio do Silêncio - Testes de avanço para passar a Coruja do Ártico
 def desafio_silencio(vida_atual):
     print("""
-    Após você ter atravessado as águas feditas do pantano e caminhar mais um tempo
+    Após você ter escalado as montanhas geladas dos ventos
     você se depara com uma criatura imensa dormindo à frente, uma Coruja do Ártico Gigante!
     Você consegue ver que o terreno no qual ela descansa é muito irregular e cheio 
     de galhos, pedras e restos de animais, um passo em falso pode custar sua vida...
@@ -276,7 +277,7 @@ def floresta_sombria():
 
         "Eis tríade da escolha: grite para o que há em frente,
           Apegue-se na essência da sua voz, somente...
-          Seguir o reflete é a verdadeira opção,
+          Seguir o reflexo é a verdadeira opção,
           Se a sua missão é derrotar o terrível dragão."
 
           Você decide testar os caminhos, um por um, fazendo um som forte
@@ -420,6 +421,7 @@ while True:
         iniciarJogo()
     elif opcao == "2":
         print("\nSaindo do jogo. O Dragão continuará aterrorizando CodeVille...")
+        break
     elif opcao == "3":
         print("""  Alunos:
               Carlos Henrique
@@ -428,6 +430,5 @@ while True:
               Marcelo Justino
               Micaías Alexandre
               Pedro Canto \n""")
-        break
     else:
         print("Opção inválida! Tente novamente.")
