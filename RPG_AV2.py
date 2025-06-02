@@ -126,7 +126,7 @@ def desafioPantano():
 #Desafio do Silêncio - Testes de avanço para passar a Coruja do Ártico
 def desafio_silencio(vida_atual):
     print("""
-    Após você ter atravessado as águas feditas do pantano e caminhar mais um tempo
+   Após você ter escalado as montanhas geladas dos ventos
     você se depara com uma criatura imensa dormindo à frente, uma Coruja do Ártico Gigante!
     Você consegue ver que o terreno no qual ela descansa é muito irregular e cheio 
     de galhos, pedras e restos de animais, um passo em falso pode custar sua vida...
@@ -203,7 +203,7 @@ def desafio_silencio(vida_atual):
         if ruido >= 6:
             print(dragao)
             print("""
-                  O monstro se ergue, olhos brilhando de ódio! Com um urro que ecoa pelo Pantano!
+                  O monstro se ergue, olhos brilhando de ódio! Com um urro que ecoa pela montanha!
                   sem te dar tempo para reagir ele começa avançando e te da um golpe desprevenido
                  """)
             
@@ -405,9 +405,10 @@ def montanha_dos_ventos():
                         Você bebe e se sente revigorado, seus pontos de vida aumentaram em 20!
                     """)
                 vida_atual = vida_atual + 20
+                desafio_silencio(vida_atual)
                 return
             else:
-                print("Nada pareceu interessante vindo dessa corvo... você segue o caminho normalmente. A caverna lhe aguarda.")
+                print("Nada pareceu interessante vindo desse corvo... você segue o caminho normalmente. A caverna lhe aguarda.")
                 desafio_silencio(vida_atual)
 
         elif escolha_montanha == "2":
