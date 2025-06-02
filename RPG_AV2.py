@@ -413,10 +413,12 @@ def montanha_dos_ventos():
             else:
                 print("Nada pareceu interessante vindo desse corvo... você segue o caminho normalmente. A caverna lhe aguarda.")
                 desafio_silencio(vida_atual)
+                return
 
         elif escolha_montanha == "2":
             print("Você ignora o corvo e continua... mas uma tempestade te força a recuar e tentar outra rota.")
             desafio_silencio(vida_atual)
+            return
 
         else:
             print("Escolha inválida. Tente novamente.")
